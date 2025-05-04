@@ -31,7 +31,7 @@ export default function Hoteles() {
                 </Link>
             </div>
 
-            <div className='flex justify-between items-center p-2'>
+            <div className='flex justify-between items-center'>
                 <table className='w-full mt-10 table-auto shadow bg-white rounded-lg'>
                     <caption className='bg-indigo-600 text-white p-3 font-bold text-lg rounded-t-lg'>Lista de Hoteles</caption>
                     <thead className='bg-slate-800 text-white'>
@@ -42,6 +42,7 @@ export default function Hoteles() {
                             <th className='p-2'>Email</th>
                             <th className='p-2'>Página Web</th>
                             <th className='p-2'>Número de Habitaciones</th>
+                            <th className='p-2'>Habitaciones Creadas</th>
                             <th className='p-2'>Actualizado</th>
                             <th className='p-2'>Acciones</th>
                         </tr>
