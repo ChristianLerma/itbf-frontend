@@ -79,8 +79,8 @@ export default function EditarHotel() {
                 method='post'
             >
                 <div className='mb-4'>
-                    <div className='grid grid-cols-7 gap-4'>
-                        <div className='mb-4 col-span-5'>
+                    <div className='grid grid-cols-12 gap-4'>
+                        <div className='col-span-7'>
                             <label 
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="hotel">
@@ -95,7 +95,7 @@ export default function EditarHotel() {
                                 defaultValue={hotel.hotel}
                             />
                         </div>
-                        <div className='mb-4 col-span-2'>
+                        <div className='col-span-3'>
                             <label 
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="numero_habitaciones">
@@ -108,7 +108,29 @@ export default function EditarHotel() {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
                                 placeholder='Número de Habitaciones'
                                 defaultValue={hotel.numero_habitaciones}
+                                min={hotel.total_habitaciones}
+                                onInvalid={(e) => {
+                                    if (+e.currentTarget.value < +hotel.total_habitaciones) {
+                                        e.currentTarget.setCustomValidity(`El número de habitaciones no puede ser menor a las creadass en el sistema (${hotel.total_habitaciones})`);
+                                    } else {
+                                        e.currentTarget.setCustomValidity('');
+                                    }
+                                }}  
                             />
+                        </div>
+                        <div className='col-span-2'>
+                            <label 
+                                className='block text-gray-700 text-sm font-bold mb-2 text-center'
+                                htmlFor="total_habitaciones">
+                                Habitaciones Creadas
+                            </label>
+                            <label 
+                                id="total_habitaciones" 
+                                className='block text-yellow-700 text-3xl font-bold mb-2 text-center'
+                                htmlFor="numero_habitaciones"
+                            >
+                                {hotel.total_habitaciones}
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -129,7 +151,7 @@ export default function EditarHotel() {
                 </div>
                 <div className='mb-4'>
                     <div className='grid grid-cols-3 gap-4'>
-                        <div className='mb-4 col-span-2'>
+                        <div className='col-span-2'>
                             <label 
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="direccion">
