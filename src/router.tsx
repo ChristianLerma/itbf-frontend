@@ -4,7 +4,8 @@ import Hoteles, { loader as hotelesLoader } from './views/Hoteles';
 import NuevoHotel, { action as nuevoHotelAction } from './views/NuevoHotel';
 import EditarHotel, { loader as editarHotelLoader, action as editarHotelAction } from './views/EditarHotel';
 import { action as eliminarHotelAction } from './components/HotelDetails';
-import Habitaciones from './views/Habitaciones';
+import Habitaciones, { loader as HabitacionesLoader } from './views/Habitaciones';
+import { action as eliminarHabitacionAction } from './components/HabitacionDetails';
 
 export const router = createBrowserRouter([
     {
@@ -34,6 +35,11 @@ export const router = createBrowserRouter([
             {
                 path: 'habitaciones/:Id',
                 element: <Habitaciones />,
+                loader: HabitacionesLoader,
+            },
+            {
+                path: 'habitaciones/:Id/eliminar', //ROA Parent - Resource Oriented Architecture
+                action: eliminarHabitacionAction,
             },
         ]    
     },
