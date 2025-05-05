@@ -1,6 +1,6 @@
 import { Link, Form, useActionData, ActionFunctionArgs, redirect } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
-import { addHotel } from '../services/HotelesService';
+import { addHotel, getHotelesByNombre } from '../services/HotelesService';
 import { toast } from 'react-toastify';
 
 export async function action({ request } : ActionFunctionArgs) {
@@ -28,7 +28,15 @@ export async function action({ request } : ActionFunctionArgs) {
         
         return error;
     }
-    
+
+    //Validar que el hotel no exista
+    const hotel = (await getHotelesByNombre(typeof data.hotel === 'string' ? data.hotel : '')) ?? [];
+    if (hotel.length > 0) {
+        toast.error('El hotel ' + data.hotel + ' ya existe')
+        
+        return 'El hotel ' + data.hotel + ' ya existe';
+    }
+
     await addHotel(data);
 
     toast.success('Hotel creado correctamente')
@@ -43,10 +51,10 @@ export default function NuevoHotel() {
     return (
         <>
             <div className='flex justify-between items-center'>
-                <h2 className='text-4xl font-black text-slate-500'>Crear Nuevo Hotel</h2>
+                <h2 className='text-4xl font-black text-slate-500'>Crear Hotel</h2>
                 <Link 
                     to="/"
-                    className='bg-gray-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-gray-400'
+                    className='bg-indigo-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-indigo-800'
                 >
                     Volver a Hoteles
                 </Link>
@@ -170,12 +178,20 @@ export default function NuevoHotel() {
                     </div>
                 </div>
                 <div>
-                    <button 
-                        type='submit'
-                        className='w-full bg-indigo-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-indigo-500 hover:cursor-pointer'
-                    >
-                        Crear Hotel
-                    </button>
+                    <div className='grid grid-cols-2 gap-4'>
+                        <button 
+                            type='submit'
+                            className='grid-span-1 w-full bg-indigo-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-indigo-500 hover:cursor-pointer'
+                            >
+                            Crear Hotel
+                        </button>
+                        <Link 
+                            to="/"
+                            className='grid-span-1 w-full bg-gray-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-gray-500 hover:cursor-pointer text-center'
+                        >
+                            Cancelar
+                        </Link>
+                    </div>
                 </div>
             </Form>
         </>

@@ -6,6 +6,8 @@ import EditarHotel, { loader as editarHotelLoader, action as editarHotelAction }
 import { action as eliminarHotelAction } from './components/HotelDetails';
 import Habitaciones, { loader as HabitacionesLoader } from './views/Habitaciones';
 import { action as eliminarHabitacionAction } from './components/HabitacionDetails';
+import NuevaHabitacion, { loader as HabitacionNuevaLoader, action as nuevaHabitacionAction } from './views/NuevaHabitacion';
+import EditarHabitacion, { loader as editarHabitacionLoader, action as editarHabitacionAction } from './views/EditarHabitacion';
 
 export const router = createBrowserRouter([
     {
@@ -41,6 +43,21 @@ export const router = createBrowserRouter([
                 path: 'habitaciones/:Id/eliminar', //ROA Parent - Resource Oriented Architecture
                 action: eliminarHabitacionAction,
             },
+            {
+                path: 'habitaciones/:Id/nueva',
+                element: <NuevaHabitacion />,
+                loader: HabitacionNuevaLoader,
+                action: nuevaHabitacionAction,
+            },
+            {
+                path: 'habitaciones/:Id/editar',
+                element: <EditarHabitacion />,
+                loader: editarHabitacionLoader,
+                action: editarHabitacionAction,
+            }
+            //You can provide a way better UX than this when your app throws errors by providing your own ErrorBoundary or errorElement prop on your route.
+           // { 
+
         ]    
     },
 ]);

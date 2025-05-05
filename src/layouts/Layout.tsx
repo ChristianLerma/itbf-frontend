@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import 'react-tooltip/dist/react-tooltip.css'
 
 export default function Layout() {
   return (
@@ -16,7 +17,7 @@ export default function Layout() {
         <main className='mt-10 mx-auto max-w-11/12 p-10 bg-white shadow'>
             <Outlet />
 
-            <ToastContainer />
+            <ToastContainer />            
         </main>
     </>
   );

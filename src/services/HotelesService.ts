@@ -1,5 +1,5 @@
 import { safeParse } from "valibot";
-import { DrafHotelSchema, HotelesSchema, Hotel, HotelSchema } from "../types";
+import { DrafHotelSchema, HotelesSchema, Hotel, HotelSchema, HotelesExistenSchema } from "../types";
 import axios from "axios";
 
 type HotelData = {
@@ -43,7 +43,7 @@ export async function addHotel(data: HotelData) {
     }
 }
 
-export async function getHotels() {
+export async function getHoteles() {
     try {
         const url = `${import.meta.env.VITE_API_URL}/hoteles`;
         const { data } = await axios.get(url, {
@@ -56,14 +56,14 @@ export async function getHotels() {
         if (result.success) {
             return result.output;
         } else {
-            console.error('Error parsing hotels data:', result);
+            console.error('Error parsing hoteles data:', result);
         }
     } catch (error) {
-        console.error('Error fetching hotels:', error);
+        console.error('Error fetching hoteles:', error);
     }
 }
 
-export async function getHotelsById(id: Hotel['id']) {
+export async function getHotelById(id: Hotel['id']) {
     try {
         const url = `${import.meta.env.VITE_API_URL}/hoteles/${id}`;
         const { data } = await axios.get(url, {
@@ -77,10 +77,10 @@ export async function getHotelsById(id: Hotel['id']) {
         if (result.success) {
             return result.output;
         } else {
-            console.error('Error parsing hotels data:', result);
+            console.error('Error parsing hoteles data:', result);
         }
     } catch (error) {
-        console.error('Error fetching hotels:', error);
+        console.error('Error fetching hoteles:', error);
     }
 }
 
@@ -97,7 +97,7 @@ export async function updateHotel(id: Hotel['id'], data: HotelData) {
         });
 
         if (result.success) {
-            const url = `${import.meta.env.VITE_API_URL}/hoteles/${id}`;
+            const url = `${import.meta.env.VITE_API_URL}/hoteles/${id}/editar`;
             const { data: response } = await axios.put(url, { 
                 hotel: result.output.hotel,
                 descripcion: result.output.descripcion,
@@ -133,5 +133,26 @@ export async function deleteHotel(id: Hotel['id']) {
         return data;
     } catch (error) {
         console.error('Error deleting hotel:', error);
+    }
+}
+
+export async function getHotelesByNombre(hotel: Hotel['hotel']) {
+    try {
+        const url = `${import.meta.env.VITE_API_URL}/hoteles/nombre/${hotel}`;
+        const { data } = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const result = safeParse(HotelesExistenSchema, data.data);
+        
+        if (result.success) {
+            return result.output;
+        } else {
+            console.error('Error parsing hoteles data:', result);
+        }
+    } catch (error) {
+        console.error('Error fetching hoteles:', error);
     }
 }

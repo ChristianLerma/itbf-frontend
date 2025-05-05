@@ -1,8 +1,9 @@
 import { useNavigate, Form, ActionFunctionArgs, redirect } from "react-router-dom";
 import { Habitacion } from "../types";
 import { formatDateforHumans } from "../utils";
-import { deleteHabitacion } from "../services/HabitacionesService";
+import { deleteHabitacion, getHabitacionById } from "../services/HabitacionesService";
 import { toast } from 'react-toastify';
+import { Tooltip } from "react-tooltip";
 
 type HabitacionDetailsProps = {
     habitacion: Habitacion;
@@ -10,11 +11,16 @@ type HabitacionDetailsProps = {
 
 export async function action({ params } : ActionFunctionArgs) {
     if (params.Id !== undefined) {
+        const habitacion = await getHabitacionById(+params.Id!);
+        if (habitacion === null || habitacion === undefined || !habitacion) {
+            return redirect('/')
+        }
+
         await deleteHabitacion(+params.Id!);
 
         toast.success('Habitación eliminada correctamente')
 
-        return redirect('/habitaciones/' + params.Id);
+        return redirect('/habitaciones/' + habitacion.hotel_id);
     }
 
     return redirect('/');
@@ -26,34 +32,40 @@ export default function HabitacionDetails({habitacion}: HabitacionDetailsProps) 
 
     return (
         <tr key={habitacion.id} className="border-b hover:bg-gray-50">
-            <td className="p-2 text-sm text-gray-800">{habitacion.habitacion}</td>
+            <td className="p-2 text-sm text-gray-800">
+                <a
+                    onClick={() => navigate(`/habitaciones/${habitacion.id}/editar`)}
+                    className="text-yellow-700 hover:text-yellow-500 font-bold text-lg cursor-pointer"
+                    data-tooltip-id={`tooltip-editar-habitacion-${habitacion.id}`} data-tooltip-content="Editar Habitación"
+                >
+                    {habitacion.habitacion}
+                </a>
+                <Tooltip id={`tooltip-editar-habitacion-${habitacion.id}`} place="top" style={{ backgroundColor: "rgb(234, 179, 8)", color: "#FFF"  }}/>
+            </td>
             <td className="p-2 text-sm text-gray-800">{habitacion.descripcion}</td>
-            <td className="p-2 text-sm text-gray-800">{habitacion.acomodacion}</td>
+            <td className="p-2 text-sm text-gray-800">{habitacion.cantidad}</td>
             <td className="p-2 text-sm text-gray-800">{habitacion.tipo}</td>
+            <td className="p-2 text-sm text-gray-800">{habitacion.acomodacion}</td>
             <td className="p-2 text-sm text-gray-800 text-nowrap">{ formatDateforHumans(habitacion.updated_at) }</td>
             <td className="p-2 text-sm text-gray-800 text-center">
                 <div className="flex justify-center items-center gap-2">
-                    <button 
-                        type="button"
-                        onClick={() => navigate(`/hoteles/${habitacion.id}/editar`)}
-                        className="bg-green-700 text-white px-4 py-2 rounded-md font-bold text-sm shadow-sm hover:bg-green-500 hover:cursor-pointer"
-                    >
-                        Editar
-                    </button>
                     <Form
-                        className="w-full"
+                        className="w-full items-center flex justify-center"
                         method="post"
                         action={`/habitaciones/${habitacion.id}/eliminar`}
                         onSubmit={(e) => {
-                            if (!confirm('¿Estás seguro de que deseas eliminar la habitación?')) {
+                            if (!confirm('¿Estás seguro de que deseas eliminar esta habitación?')) {
                                 e.preventDefault();
                             }
                         }}
                     >
-                        <input type="submit" value="Eliminar" 
-                            className="bg-red-500 text-white px-4 py-2 rounded-md font-bold text-sm shadow-sm hover:bg-red-400 hover:cursor-pointer"
-                        />
-                    </Form>
+                        <button type="submit">
+                            <svg type="submit" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="size-5 cursor-pointer text-red-800 hover:text-red-400" data-tooltip-id={`tooltip-eliminar-hotel-${habitacion.id}`} data-tooltip-html="Eliminar <br /> Habitación">
+                                <path d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                            </svg>
+                        </button>
+                    </Form>                    
+                    <Tooltip id={`tooltip-eliminar-hotel-${habitacion.id}`} place="top" style={{ backgroundColor: "oklch(44.4% 0.177 26.899)", color: "#FFF"  }}/>
                 </div>
             </td>
         </tr>

@@ -1,12 +1,12 @@
 import { Link, Form, useActionData, ActionFunctionArgs, redirect, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
-import { getHotelsById, updateHotel } from '../services/HotelesService';
+import { getHotelById, updateHotel } from '../services/HotelesService';
 import { Hotel } from '../types';
 import { toast } from 'react-toastify';
 
 export async function loader({params} : LoaderFunctionArgs) {
     if (params.Id !== undefined) {
-        const hotel = await getHotelsById(+params.Id)
+        const hotel = await getHotelById(+params.Id)
         if (hotel === null || hotel === undefined || !hotel) {
             return redirect('/')
         }
@@ -66,7 +66,7 @@ export default function EditarHotel() {
                 <h2 className='text-4xl font-black text-green-700'>Editar Hotel</h2>
                 <Link 
                     to="/"
-                    className='bg-gray-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-gray-400'
+                    className='bg-indigo-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-indigo-800'
                 >
                     Volver a Hoteles
                 </Link>
@@ -218,12 +218,20 @@ export default function EditarHotel() {
                     </div>
                 </div>
                 <div>
-                    <button 
-                        type='submit'
-                        className='w-full bg-green-700 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-green-500 hover:cursor-pointer'
-                    >
-                        Editar Hotel
-                    </button>
+                    <div className='grid grid-cols-2 gap-4'>
+                        <button 
+                            type='submit'
+                            className='w-full bg-green-700 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-green-500 hover:cursor-pointer'
+                            >
+                            Editar Hotel
+                        </button>
+                        <Link 
+                            to="/"
+                            className='grid-span-1 w-full bg-gray-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-gray-500 hover:cursor-pointer text-center'
+                        >
+                            Cancelar
+                        </Link>
+                    </div>
                 </div>
             </Form>
         </>

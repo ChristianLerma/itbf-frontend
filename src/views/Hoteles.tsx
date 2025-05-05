@@ -1,10 +1,10 @@
 import { Link, useLoaderData } from 'react-router-dom';
-import { getHotels } from '../services/HotelesService';
+import { getHoteles } from '../services/HotelesService';
 import HotelDetails from '../components/HotelDetails';
 import { Hotel } from '../types';
 
 export async function loader() {
-    const hoteles = (await getHotels()) ?? [];
+    const hoteles = (await getHoteles()) ?? [];
 
     hoteles.sort((a, b) => {
         const dateA = new Date(a.updated_at).getTime();
@@ -22,18 +22,24 @@ export default function Hoteles() {
     return (
         <>
             <div className='flex justify-between items-center'>
-                <h2 className='text-4xl font-black text-slate-500'>Hoteles</h2>
-                <Link 
-                    to="/hoteles/nuevo"
-                    className='bg-indigo-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-indigo-500'
-                >
-                    Crear Hotel
-                </Link>
+                <h2 className='text-4xl font-black text-slate-500'>Hoteles</h2>                
             </div>
 
             <div className='flex justify-between items-center'>
                 <table className='w-full mt-10 table-auto shadow bg-white rounded-lg'>
-                    <caption className='bg-indigo-600 text-white p-3 font-bold text-lg rounded-t-lg'>Lista de Hoteles</caption>
+                    <caption className='bg-indigo-600 text-white p-3 font-bold text-lg rounded-t-lg'>
+                        <div className='flex justify-between items-center'>
+                            <span className='text-lg font-bold pl-2'>
+                                Lista de Hoteles
+                            </span>
+                            <Link 
+                                to="/hoteles/nuevo"
+                                className='bg-slate-800 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-slate-600'
+                            >
+                                Crear Hotel
+                            </Link>
+                        </div>
+                    </caption>
                     <thead className='bg-slate-800 text-white'>
                         <tr>
                             <th className='p-2'>Hotel</th>
