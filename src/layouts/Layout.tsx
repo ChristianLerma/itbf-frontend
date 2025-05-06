@@ -13,14 +13,14 @@ export default function Layout() {
   return (
     <>
         <header className='bg-cyan-700'>
-            <div className='mx-auto max-w-6xl p-10'>
+            <div className='mx-auto md:max-w-6xl p-8 md:flex md:justify-between md:items-center sm:max-sm:w-1/12 sm:px-5 sm:py-5 xs:px-2 xs:py-2'>
                 <h1 className='text-4xl font-extrabold text-white'>
                     Administrador de Hoteles
                 </h1>
             </div>
         </header>
 
-        <main className='mt-10 mx-auto max-w-11/12 p-10 bg-white shadow'>
+        <main className='mt-10 mx-auto max-w-11/12 p-10 bg-white shadow sm:px-5 sm:py-5 xs:px-2 xs:py-2'>
             <Outlet />
 
             <ToastContainer />            

@@ -56,10 +56,18 @@ export default function HotelDetails({hotel}: HotelDetailsProps) {
                 </a>
                 <Tooltip id={`tooltip-editar-hotel-${hotel.id}`} place="top" style={{ backgroundColor: "oklch(52.7% 0.154 150.069)", color: "#FFF"  }}/>
             </td>
-            <td className="p-2 text-sm text-gray-800">{hotel.direccion}</td>
+            <td className="p-2 text-sm text-gray-800 hidden sm:table-cell">{hotel.direccion}</td>
             <td className="p-2 text-sm text-gray-800">{hotel.telefono}</td>
-            <td className="p-2 text-sm text-gray-800">{hotel.email}</td>
-            <td className="p-2 text-sm text-gray-800">{hotel.pagina_web}</td>
+            <td className="p-2 text-xs text-gray-800 hidden sm:table-cell">
+                <a href={`mailto:${hotel.email}`} className="text-blue-500 hover:text-blue-400 font-bold text-xs cursor-pointer">
+                    {hotel.email.includes("@") ? hotel.email.split("@")[0] : hotel.email}
+                </a>
+            </td>
+            <td className="p-2 text-xs text-gray-800 hidden md:table-cell">
+                <a href={hotel.pagina_web} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-400 font-bold text-xs cursor-pointer">
+                    {hotel.pagina_web.includes("http") ? hotel.pagina_web.split("/")[2] : hotel.pagina_web}
+                </a>
+            </td>
             <td className="p-2 text-sm text-gray-800 text-center">{hotel.numero_habitaciones}</td>
             <td className="p-2 text-sm text-center">
                 <a
@@ -71,7 +79,7 @@ export default function HotelDetails({hotel}: HotelDetailsProps) {
                 </a>
                 <Tooltip id={`tooltip-numero-habitaciones-${hotel.id}`} place="top" style={{ backgroundColor: "rgb(234, 179, 8)", color: "#FFF"  }}/>
             </td>
-            <td className="p-2 text-sm text-gray-800 text-nowrap">{ formatDateforHumans(hotel.updated_at) }</td>
+            <td className="p-2 text-sm text-gray-800 text-nowrap hidden md:table-cell">{ formatDateforHumans(hotel.updated_at) }</td>
             <td className="p-2 text-sm text-gray-800 text-center">
                 {hotel.total_habitaciones === 0 && (
                     <div className="flex justify-center items-center gap-2">
