@@ -1,54 +1,72 @@
-# React + TypeScript + Vite
+# Documentación del Proyecto: ITBF - Hoteles
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción
+Este proyecto es una aplicación web para la gestión de hoteles y habitaciones. Está desarrollado utilizando **React**, **TypeScript**, **Vite** y **TailwindCSS** en el frontend, y está diseñado para integrarse con una API backend (Laravel).
 
-Currently, two official plugins are available:
+## Tecnologías y Lenguajes Utilizados
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ![React](https://img.shields.io/badge/-React-333333?style=flat&logo=react) **React**: Biblioteca para construir interfaces de usuario.
+- ![TypeScript](https://img.shields.io/badge/-TypeScript-333333?style=flat&logo=typescript) **TypeScript**: Lenguaje de programación con tipado estático.
+- ![Vite](https://img.shields.io/badge/-Vite-333333?style=flat&logo=vite) **Vite**: Herramienta de construcción rápida para proyectos frontend.
+- ![TailwindCSS](https://img.shields.io/badge/-TailwindCSS-333333?style=flat&logo=tailwindcss) **TailwindCSS**: Framework de diseño CSS.
+- ![Axios](https://img.shields.io/badge/-Axios-333333?style=flat&logo=axios) **Axios**: Cliente HTTP para realizar solicitudes a la API.
+- ![React Router](https://img.shields.io/badge/-React%20Router-333333?style=flat&logo=react-router) **React Router**: Manejo de rutas en la aplicación.
+- ![React Toastify](https://img.shields.io/badge/-React%20Toastify-333333?style=flat&logo=react) **React Toastify**: Biblioteca para notificaciones en tiempo real.
+- ![Valibot](https://img.shields.io/badge/-Valibot-333333?style=flat) **Valibot**: Validación de datos en formularios.
+- ![ESLint](https://img.shields.io/badge/-ESLint-333333?style=flat&logo=eslint) **ESLint**: Herramienta para analizar y corregir errores en el código.
+- ![Prettier](https://img.shields.io/badge/-Prettier-333333?style=flat&logo=prettier) **Prettier**: Formateador de código.
+- ![Node.js](https://img.shields.io/badge/-Node.js-333333?style=flat&logo=node.js) **Node.js**: Entorno de ejecución para JavaScript.
+- ![NPM](https://img.shields.io/badge/-NPM-333333?style=flat&logo=npm) **NPM**: Gestor de paquetes para instalar dependencias.
+- ![HTML5](https://img.shields.io/badge/-HTML5-333333?style=flat&logo=html5) **HTML5**: Lenguaje de marcado para la estructura de la aplicación.
+- ![CSS3](https://img.shields.io/badge/-CSS3-333333?style=flat&logo=css3) **CSS3**: Lenguaje de estilos para el diseño de la aplicación.
 
-## Expanding the ESLint configuration
+## Características
+- Gestión de hoteles:
+  - Crear, editar y eliminar hoteles.
+  - Visualizar la lista de hoteles.
+- Gestión de habitaciones:
+  - Crear, editar y eliminar habitaciones.
+  - Visualizar la lista de habitaciones asociadas a un hotel.
+- Validaciones en formularios para garantizar la integridad de los datos.
+- Notificaciones en tiempo real utilizando **react-toastify**.
+- Diseño responsivo con **TailwindCSS**.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Instalación
+1. Clona el repositorio:
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd itbf-frontend
+   ```
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. Instala las dependencias:
+   ```bash
+   npm install
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Configura las variables de entorno en `.env.local`:
+   ```env
+   VITE_API_URL=http://localhost:8000/api
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+4. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Scripts Disponibles
+- `npm run dev`: Inicia el servidor de desarrollo.
+- `npm run build`: Compila la aplicación para producción.
+- `npm run preview`: Previsualiza la aplicación compilada.
+- `npm run lint`: Ejecuta ESLint para verificar errores de código.
+
+## Dependencias Principales
+- **React**: Biblioteca para construir interfaces de usuario.
+- **React Router**: Manejo de rutas en la aplicación.
+- **TypeScript**: Tipado estático para JavaScript.
+- **Vite**: Herramienta de construcción rápida.
+- **TailwindCSS**: Framework de diseño CSS.
+- **Axios**: Cliente HTTP para interactuar con la API.
+- **React Toastify**: Notificaciones en tiempo real.
+
+## Licencia
+Este proyecto está bajo la licencia MIT.
