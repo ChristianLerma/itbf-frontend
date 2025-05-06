@@ -158,8 +158,8 @@ export default function NuevaHabitacion() {
                 method='post'
             >
                 <div className='mb-4'>
-                    <div className='grid grid-cols-12 gap-4'>
-                        <div className='mb-4 col-span-10'>
+                    <div className='grid md:grid-cols-12 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                        <div className='mb-4 md:col-span-10 xs:col-span-1'>
                             <input 
                                 id="hotel_id" 
                                 name='hotel_id'
@@ -179,7 +179,7 @@ export default function NuevaHabitacion() {
                                 placeholder='Nombre de la Habitación'
                             />
                         </div>
-                        <div className='mb-4 col-span-2'>
+                        <div className='mb-4 md:col-span-2 xs:col-span-1'>
                             <label
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="cantidad">
@@ -195,24 +195,22 @@ export default function NuevaHabitacion() {
                         </div>
                     </div>
                 </div>
-                <div className='mb-4'>
-                    <div className='mb-4 col-span-5'>
-                        <label
-                            className='block text-gray-700 text-sm font-bold mb-2'
-                            htmlFor="descripcion">
-                            Descripción
-                        </label>
-                        <textarea 
-                            name="descripcion" 
-                            id="descripcion" 
-                            className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50'                            
-                            placeholder='Descripción de la habitación'
-                        ></textarea>
-                    </div>
+                <div className='mb-4 grid md:grid-cols-1 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                    <label
+                        className='block text-gray-700 text-sm font-bold mb-2'
+                        htmlFor="descripcion">
+                        Descripción
+                    </label>
+                    <textarea 
+                        name="descripcion" 
+                        id="descripcion" 
+                        className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50'                            
+                        placeholder='Descripción de la habitación'
+                    ></textarea>
                 </div>
                 <div className='mb-4'>
-                    <div className='grid grid-cols-2 gap-4'>
-                        <div className='mb-4 col-span-1'>
+                    <div className='grid md:grid-cols-2 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                        <div className='mb-4 md:col-span-1 xs:col-span-1'>
                             <label 
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="tipo_id">
@@ -248,7 +246,7 @@ export default function NuevaHabitacion() {
                                 ))}                                
                             </select>
                         </div>
-                        <div className='mb-4 col-span-1'>
+                        <div className='mb-4 md:col-span-1 xs:col-span-1'>
                             <label 
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="acomodacion_id">
@@ -273,10 +271,10 @@ export default function NuevaHabitacion() {
                     </div>
                 </div>
                 <div>
-                    <div className='grid grid-cols-2 gap-4'>
+                    <div className='grid md:grid-cols-2 gap-4'>
                         <button 
                             type='submit'
-                            className='w-full bg-yellow-500 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-yellow-800 hover:cursor-pointer'
+                            className='grid-span-1 w-full bg-yellow-500 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-yellow-800 hover:cursor-pointer'
                         >
                             Crear Habitación
                         </button>

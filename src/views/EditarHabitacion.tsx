@@ -183,8 +183,8 @@ export default function EditarHabitacion() {
                 method='post'
             >
                 <div className='mb-4'>
-                    <div className='grid grid-cols-12 gap-4'>
-                        <div className='mb-4 col-span-10'>
+                    <div className='grid md:grid-cols-12 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                        <div className='mb-4 md:col-span-10 xs:col-span-1'>
                             <input 
                                 id="hotel_id" 
                                 name='hotel_id'
@@ -205,7 +205,7 @@ export default function EditarHabitacion() {
                                 defaultValue={habitacion.habitacion}
                             />
                         </div>
-                        <div className='mb-4 col-span-2'>
+                        <div className='mb-4 md:col-span-2 xs:col-span-1'>
                             <label
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="cantidad">
@@ -228,90 +228,86 @@ export default function EditarHabitacion() {
                         </div>
                     </div>
                 </div>
-                <div className='mb-4'>
-                    <div className='mb-4 col-span-5'>
-                        <label
-                            className='block text-gray-700 text-sm font-bold mb-2'
-                            htmlFor="descripcion">
-                            Descripción
-                        </label>
-                        <textarea 
-                            name="descripcion" 
-                            id="descripcion" 
-                            className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50'                            
-                            placeholder='Descripción de la habitación'
-                            defaultValue={habitacion.descripcion}
-                        ></textarea>
-                    </div>
+                <div className='mb-4 grid md:grid-cols-1 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                    <label
+                        className='block text-gray-700 text-sm font-bold mb-2'
+                        htmlFor="descripcion">
+                        Descripción
+                    </label>
+                    <textarea 
+                        name="descripcion" 
+                        id="descripcion" 
+                        className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50'                            
+                        placeholder='Descripción de la habitación'
+                        defaultValue={habitacion.descripcion}
+                    ></textarea>
                 </div>
-                <div className='mb-4'>
-                    <div className='grid grid-cols-2 gap-4'>
-                    <div className='mb-4 col-span-1'>
-                            <label 
-                                className='block text-gray-700 text-sm font-bold mb-2'
-                                htmlFor="tipo_id">
-                                Tipo de Habitación
-                            </label>
-                            <select 
-                                id="tipo_id" 
-                                name='tipo_id'
-                                className='shadow border rounded w-full py-2 px-3 text-gray-700 bg-gray-50'                                
-                                defaultValue={habitacion.tipo_id}
-                                onChange={(e) => {
-                                    const selectedTipoId = Number(e.target.value);
-                                    setAcomodacionesFiltradas(acomodaciones.filter(acomodacion => {
-                                        if (selectedTipoId === 1) {
-                                            return acomodacion.id === 1 || acomodacion.id === 2;
-                                        } else if (selectedTipoId === 2) {
-                                            return acomodacion.id === 3 || acomodacion.id === 4;
-                                        } else if (selectedTipoId === 3) {
-                                            return acomodacion.id === 1 || acomodacion.id === 2 || acomodacion.id === 3;
-                                        } else {
-                                            return true;
-                                        }
-                                    }));
-                                }}
-                            >
-                                <option value="">Seleccione el tipo de habitación...</option>
-                                {tipos.map(tipo => (
-                                    <option 
-                                        key={tipo.id} 
-                                        value={tipo.id}
-                                    >
-                                        {tipo.tipo}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className='mb-4 col-span-1'>
-                            <label 
-                                className='block text-gray-700 text-sm font-bold mb-2'
-                                htmlFor="acomodacion_id">
-                                Acomodacion
-                            </label>
-                            <select 
-                                id="acomodacion_id" 
-                                name='acomodacion_id'
-                                className='shadow border rounded w-full py-2 px-3 text-gray-700 bg-gray-50'
-                            >
-                                <option value="">Seleccione la acomodación...</option>
-                                {acomodacionesFiltradas.map(acomodacion => (
-                                    <option 
-                                        key={acomodacion.id} 
-                                        value={acomodacion.id}
-                                    >
-                                        {acomodacion.acomodacion}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>                        
+                <div className='grid md:grid-cols-2 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                    <div className='mb-4 md:col-span-1 xs:col-span-1'>
+                        <label 
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="tipo_id">
+                            Tipo de Habitación
+                        </label>
+                        <select 
+                            id="tipo_id" 
+                            name='tipo_id'
+                            className='shadow border rounded w-full py-2 px-3 text-gray-700 bg-gray-50'                                
+                            defaultValue={habitacion.tipo_id}
+                            onChange={(e) => {
+                                const selectedTipoId = Number(e.target.value);
+                                setAcomodacionesFiltradas(acomodaciones.filter(acomodacion => {
+                                    if (selectedTipoId === 1) {
+                                        return acomodacion.id === 1 || acomodacion.id === 2;
+                                    } else if (selectedTipoId === 2) {
+                                        return acomodacion.id === 3 || acomodacion.id === 4;
+                                    } else if (selectedTipoId === 3) {
+                                        return acomodacion.id === 1 || acomodacion.id === 2 || acomodacion.id === 3;
+                                    } else {
+                                        return true;
+                                    }
+                                }));
+                            }}
+                        >
+                            <option value="">Seleccione el tipo de habitación...</option>
+                            {tipos.map(tipo => (
+                                <option 
+                                    key={tipo.id} 
+                                    value={tipo.id}
+                                >
+                                    {tipo.tipo}
+                                </option>
+                            ))}
+                        </select>
                     </div>
+                    <div className='mb-4 md:col-span-1 xs:col-span-1'>
+                        <label 
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="acomodacion_id">
+                            Acomodacion
+                        </label>
+                        <select 
+                            id="acomodacion_id" 
+                            name='acomodacion_id'
+                            className='shadow border rounded w-full py-2 px-3 text-gray-700 bg-gray-50'
+                        >
+                            <option value="">Seleccione la acomodación...</option>
+                            {acomodacionesFiltradas.map(acomodacion => (
+                                <option 
+                                    key={acomodacion.id} 
+                                    value={acomodacion.id}
+                                >
+                                    {acomodacion.acomodacion}
+                                </option>
+                            ))}
+                        </select>
+                    </div>                        
                 </div>
                 <div>
-                    <div className='grid grid-cols-2 gap-4'>
+                    <div className='grid md:grid-cols-2 gap-4'>
                         <button 
                             type='submit'
-                            className='w-full bg-yellow-500 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-yellow-800 hover:cursor-pointer'
+                            className='grid-span-1 w-full bg-yellow-500 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-yellow-800 hover:cursor-pointer'
                         >
                             Editar Habitación
                         </button>
