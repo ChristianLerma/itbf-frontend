@@ -55,7 +55,7 @@ export default function Habitaciones() {
 
     return (
         <>
-            <div className='flex justify-between items-center'>
+            <div className='flex justify-between items-center p-5'>
                 <h2 className='text-4xl font-black text-yellow-500'>Hotel: {hotel.hotel} - <span className='text-3xl font-bold'>Gestión de las Habitaciones</span></h2>
                 <Link 
                     to="/"
@@ -65,42 +65,44 @@ export default function Habitaciones() {
                 </Link>
             </div>
 
-            <div className='flex justify-between items-center'>
-                <table className='w-full mt-10 table-auto shadow bg-white rounded-lg'>
-                    <caption className='bg-yellow-600 text-white p-3 font-bold text-lg rounded-t-lg'>
-                        <div className='flex justify-between items-center'>
-                            <span>
-                                Lista de Habitaciones
-                            </span>
-                            <span className='text-white text-lg font-bold'>Capacidad: {hotel.numero_habitaciones} <span className='text-slate-900'>|</span> Habitaciones creadas: {hotel.total_habitaciones} <span className='text-slate-900'>|</span> Por crear: {hotel.numero_habitaciones - hotel.total_habitaciones}</span>
-                            {hotel.numero_habitaciones - hotel.total_habitaciones > 0 && (
-                                <Link 
-                                    to={`/habitaciones/${hotel.id}/nueva`}
-                                    className='bg-slate-800 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-slate-600'
-                                >
-                                    Crear Habitación
-                                </Link>
-                            )}
+            <div className="overflow-x-auto sm:overflow-hidden">
+                <div className="inset-0 ">
+                    <table className='min-w-full divide-y divide-slate-300 bg-white shadow rounded-xl pt-10 pb-5'>
+                        <caption className='bg-yellow-600 text-white p-3 font-bold text-lg rounded-t-lg'>
+                            <div className='md:flex md:justify-between sm:grid sm:grid-cols-1 gap-4 items-center'>
+                                <span>
+                                    Lista de Habitaciones
+                                </span>
+                                <span className='text-white text-lg font-bold'>Capacidad: {hotel.numero_habitaciones} <span className='text-slate-900'>|</span> Habitaciones creadas: {hotel.total_habitaciones} <span className='text-slate-900'>|</span> Por crear: {hotel.numero_habitaciones - hotel.total_habitaciones}</span>
+                                {hotel.numero_habitaciones - hotel.total_habitaciones > 0 && (
+                                    <Link 
+                                        to={`/habitaciones/${hotel.id}/nueva`}
+                                        className='bg-slate-800 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-slate-600'
+                                    >
+                                        Crear Habitación
+                                    </Link>
+                                )}
 
-                        </div>
-                    </caption>
-                    <thead className='bg-slate-800 text-white'>
-                        <tr>
-                            <th className='p-2'>Nombre</th>
-                            <th className='p-2'>Descripción</th>                            
-                            <th className='p-2'>Cantidad</th>                            
-                            <th className='p-2'>Tipo</th>
-                            <th className='p-2'>Acomodación</th>
-                            <th className='p-2'>Actuazalida</th>
-                            <th className='p-2'>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {habitaciones && habitaciones.map((habitacion) => (
-                            <HabitacionDetails key={habitacion.id} habitacion={habitacion} />
-                        ))}
-                    </tbody>
-                </table>
+                            </div>
+                        </caption>
+                        <thead className='bg-slate-800 text-white text-sm'>
+                        <tr className='text-white'>
+                                <th className='pl-2 pr-2 py-4 font-bold'>Nombre</th>
+                                <th className='pl-2 pr-2 py-4 font-bold hidden sm:table-cell'>Descripción</th>
+                                <th className='pl-2 pr-2 py-4 font-bold'>Cantidad</th>
+                                <th className='pl-2 pr-2 py-4 font-bold'>Tipo</th>
+                                <th className='pl-2 pr-2 py-4 font-bold '>Acomodación</th>
+                                <th className='pl-2 pr-2 py-4 font-bold hidden sm:table-cell'>Actuazalida</th>
+                                <th className='pl-2 pr-2 py-4 font-bold'>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody className='divide-y bg-white text-gray-700 divide-slate-300 text-sm'>
+                            {habitaciones && habitaciones.map((habitacion) => (
+                                <HabitacionDetails key={habitacion.id} habitacion={habitacion} />
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </>
     );

@@ -64,11 +64,11 @@ export default function HabitacionDetails({habitacion}: HabitacionDetailsProps) 
                 </a>
                 <Tooltip id={`tooltip-editar-habitacion-${habitacion.id}`} place="top" style={{ backgroundColor: "rgb(234, 179, 8)", color: "#FFF"  }}/>
             </td>
-            <td className="p-2 text-sm text-gray-800">{habitacion.descripcion}</td>
+            <td className="p-2 text-sm text-gray-800 hidden sm:table-cell">{habitacion.descripcion}</td>
             <td className="p-2 text-sm text-gray-800">{habitacion.cantidad}</td>
             <td className="p-2 text-sm text-gray-800">{habitacion.tipo}</td>
             <td className="p-2 text-sm text-gray-800">{habitacion.acomodacion}</td>
-            <td className="p-2 text-sm text-gray-800 text-nowrap">{ formatDateforHumans(habitacion.updated_at) }</td>
+            <td className="p-2 text-sm text-gray-800 text-nowrap hidden sm:table-cell">{ formatDateforHumans(habitacion.updated_at) }</td>
             <td className="p-2 text-sm text-gray-800 text-center">
                 <div className="flex justify-center items-center gap-2">
                     <Form

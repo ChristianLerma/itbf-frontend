@@ -43,7 +43,7 @@ export default function Hoteles() {
                 <div className="inset-0 ">
                     <table className='min-w-full divide-y divide-slate-300 bg-white shadow rounded-xl pt-10 pb-5'>
                         <caption className='bg-indigo-600 text-white p-3 font-bold text-lg rounded-t-lg'>
-                            <div className='flex justify-between items-center'>
+                            <div className='md:flex md:justify-between sm:grid sm:grid-cols-1 xs:grid xs:grid-cols-1 gap-4 items-center'>
                                 <span className='text-lg font-bold pl-2'>
                                     Lista de Hoteles
                                 </span>
