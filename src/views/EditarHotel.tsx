@@ -104,8 +104,8 @@ export default function EditarHotel() {
                 method='post'
             >
                 <div className='mb-4'>
-                    <div className='grid grid-cols-12 gap-4'>
-                        <div className='col-span-7'>
+                    <div className='grid md:grid-cols-12 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                        <div className='md:col-span-7 sm:col-span-1 xs:mb-4'>
                             <label 
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="hotel">
@@ -120,7 +120,7 @@ export default function EditarHotel() {
                                 defaultValue={hotel.hotel}
                             />
                         </div>
-                        <div className='col-span-3'>
+                        <div className='md:col-span-3 sm:col-span-1 xs:mb-4'>
                             <label 
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="numero_habitaciones">
@@ -145,7 +145,7 @@ export default function EditarHotel() {
                                 }}  
                             />
                         </div>
-                        <div className='col-span-2'>
+                        <div className='md:col-span-2 sm:col-span-1 xs:mb-4'>
                             <label 
                                 className='block text-gray-700 text-sm font-bold mb-2 text-center'
                                 htmlFor="total_habitaciones">
@@ -161,7 +161,7 @@ export default function EditarHotel() {
                         </div>
                     </div>
                 </div>
-                <div className='mb-4'>
+                <div className='mb-4 grid md:grid-cols-1 gap-4 sm:grid-cols-1 xs:flex flex-col'>
                     <label 
                         className='block text-gray-700 text-sm font-bold mb-2'
                         htmlFor="descripcion">
@@ -176,89 +176,83 @@ export default function EditarHotel() {
                         defaultValue={hotel.descripcion}
                     ></textarea>
                 </div>
-                <div className='mb-4'>
-                    <div className='grid grid-cols-3 gap-4'>
-                        <div className='col-span-2'>
-                            <label 
-                                className='block text-gray-700 text-sm font-bold mb-2'
-                                htmlFor="direccion">
-                                Dirección
-                            </label>
-                            <input 
-                                id="direccion"
-                                name='direccion'
-                                type="text"
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
-                                placeholder='Dirección del Hotel'
-                                defaultValue={hotel.direccion}
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label 
-                                className='block text-gray-700 text-sm font-bold mb-2'
-                                htmlFor="telefono">
-                                Teléfono
-                            </label>
-                            <input 
-                                id="telefono" 
-                                name='telefono'
-                                type="text" 
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
-                                placeholder='Teléfono del Hotel'
-                                defaultValue={hotel.telefono}
-                            />
-                        </div>
+                <div className='mb-4 grid md:grid-cols-3 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                    <div className='mb-4 md:col-span-2 xs:col-span-1'>
+                        <label 
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="direccion">
+                            Dirección
+                        </label>
+                        <input 
+                            id="direccion"
+                            name='direccion'
+                            type="text"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
+                            placeholder='Dirección del Hotel'
+                            defaultValue={hotel.direccion}
+                        />
+                    </div>
+                    <div className='mb-4 md:col-span-1 xs:col-span-1'>
+                        <label 
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="telefono">
+                            Teléfono
+                        </label>
+                        <input 
+                            id="telefono" 
+                            name='telefono'
+                            type="text" 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
+                            placeholder='Teléfono del Hotel'
+                            defaultValue={hotel.telefono}
+                        />
                     </div>
                 </div>
-                <div className='mb-4'>
-                    <div className='grid grid-cols-3 gap-4'>
-                        <div className='mb-4 col-span-1'>
-                            <label 
-                                className='block text-gray-700 text-sm font-bold mb-2'
-                                htmlFor="email">
-                                Email
-                            </label>
-                            <input 
-                                id="email"
-                                name='email'
-                                type="email"
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50"
-                                placeholder='Email del Hotel'
-                                defaultValue={hotel.email}
-                            />
-                        </div>
-                        <div className='mb-4 col-span-2'>
-                            <label 
-                                className='block text-gray-700 text-sm font-bold mb-2'
-                                htmlFor="pagina_web">
-                                Página Web
-                            </label>
-                            <input 
-                                id="pagina_web" 
-                                name='pagina_web'
-                                type="text" 
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
-                                placeholder='Página Web del Hotel'
-                                defaultValue={hotel.pagina_web}
-                            />
-                        </div>
+                <div className='mb-4 grid md:grid-cols-3 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                    <div className='mb-4 md:col-span-1 xs:col-span-1'>
+                        <label 
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="email">
+                            Email
+                        </label>
+                        <input 
+                            id="email"
+                            name='email'
+                            type="email"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50"
+                            placeholder='Email del Hotel'
+                            defaultValue={hotel.email}
+                        />
+                    </div>
+                    <div className='mb-4 md:col-span-2 xs:col-span-1'>
+                        <label 
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="pagina_web">
+                            Página Web
+                        </label>
+                        <input 
+                            id="pagina_web" 
+                            name='pagina_web'
+                            type="text" 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
+                            placeholder='Página Web del Hotel'
+                            defaultValue={hotel.pagina_web}
+                        />
                     </div>
                 </div>
-                <div>
-                    <div className='grid grid-cols-2 gap-4'>
-                        <button 
-                            type='submit'
-                            className='w-full bg-green-700 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-green-500 hover:cursor-pointer'
-                            >
-                            Editar Hotel
-                        </button>
-                        <Link 
-                            to="/"
-                            className='grid-span-1 w-full bg-gray-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-gray-500 hover:cursor-pointer text-center'
+                <div className='grid md:grid-cols-2 gap-4'>
+                    <button 
+                        type='submit'
+                        className='grid-span-1 w-full bg-green-700 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-green-500 hover:cursor-pointer'
                         >
-                            Cancelar
-                        </Link>
-                    </div>
+                        Editar Hotel
+                    </button>
+                    <Link 
+                        to="/"
+                        className='grid-span-1 w-full bg-gray-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-gray-500 hover:cursor-pointer text-center'
+                    >
+                        Cancelar
+                    </Link>
                 </div>
             </Form>
         </>

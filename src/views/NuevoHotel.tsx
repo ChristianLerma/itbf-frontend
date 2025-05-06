@@ -84,8 +84,8 @@ export default function NuevoHotel() {
                 method='post'
             >
                 <div className='mb-4'>
-                    <div className='grid grid-cols-7 gap-4'>
-                        <div className='mb-4 col-span-5'>
+                    <div className='grid md:grid-cols-7 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                        <div className='mb-4 md:col-span-5 xs:col-span-1'>
                             <label 
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="hotel">
@@ -99,7 +99,7 @@ export default function NuevoHotel() {
                                 placeholder='Nombre del Hotel'
                             />
                         </div>
-                        <div className='mb-4 col-span-2'>
+                        <div className='mb-4 md:col-span-2 xs:col-span-1'>
                             <label 
                                 className='block text-gray-700 text-sm font-bold mb-2'
                                 htmlFor="numero_habitaciones">
@@ -115,7 +115,7 @@ export default function NuevoHotel() {
                         </div>
                     </div>
                 </div>
-                <div className='mb-4'>
+                <div className='mb-4 grid md:grid-cols-1 gap-4 sm:grid-cols-1 xs:flex flex-col'>
                     <label 
                         className='block text-gray-700 text-sm font-bold mb-2'
                         htmlFor="descripcion">
@@ -130,85 +130,79 @@ export default function NuevoHotel() {
                         defaultValue={""}
                     ></textarea>
                 </div>
-                <div className='mb-4'>
-                    <div className='grid grid-cols-3 gap-4'>
-                        <div className='mb-4 col-span-2'>
-                            <label 
-                                className='block text-gray-700 text-sm font-bold mb-2'
-                                htmlFor="direccion">
-                                Dirección
-                            </label>
-                            <input 
-                                id="direccion"
-                                name='direccion'
-                                type="text"
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
-                                placeholder='Dirección del Hotel'
-                            />
-                        </div>
-                        <div className='mb-4'>
-                            <label 
-                                className='block text-gray-700 text-sm font-bold mb-2'
-                                htmlFor="telefono">
-                                Teléfono
-                            </label>
-                            <input 
-                                id="telefono" 
-                                name='telefono'
-                                type="text" 
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
-                                placeholder='Teléfono del Hotel'
-                            />
-                        </div>
+                <div className='mb-4 grid md:grid-cols-3 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                    <div className='mb-4 md:col-span-2 xs:col-span-1'>
+                        <label 
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="direccion">
+                            Dirección
+                        </label>
+                        <input 
+                            id="direccion"
+                            name='direccion'
+                            type="text"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
+                            placeholder='Dirección del Hotel'
+                        />
+                    </div>
+                    <div className='mb-4 md:col-span-1 xs:col-span-1'>
+                        <label 
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="telefono">
+                            Teléfono
+                        </label>
+                        <input 
+                            id="telefono" 
+                            name='telefono'
+                            type="text" 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
+                            placeholder='Teléfono del Hotel'
+                        />
                     </div>
                 </div>
-                <div className='mb-4'>
-                    <div className='grid grid-cols-3 gap-4'>
-                        <div className='mb-4 col-span-1'>
-                            <label 
-                                className='block text-gray-700 text-sm font-bold mb-2'
-                                htmlFor="email">
-                                Email
-                            </label>
-                            <input 
-                                id="email"
-                                name='email'
-                                type="email"
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50"
-                                placeholder='Email del Hotel'
-                            />
-                        </div>
-                        <div className='mb-4 col-span-2'>
-                            <label 
-                                className='block text-gray-700 text-sm font-bold mb-2'
-                                htmlFor="pagina_web">
-                                Página Web
-                            </label>
-                            <input 
-                                id="pagina_web" 
-                                name='pagina_web'
-                                type="text" 
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
-                                placeholder='Página Web del Hotel'
-                            />
-                        </div>
+                <div className='mb-4 grid md:grid-cols-3 gap-4 sm:grid-cols-1 xs:flex flex-col'>
+                    <div className='mb-4 md:col-span-1 xs:col-span-1'>
+                        <label 
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="email">
+                            Email
+                        </label>
+                        <input 
+                            id="email"
+                            name='email'
+                            type="email"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50"
+                            placeholder='Email del Hotel'
+                        />
+                    </div>
+                    <div className='mb-4 md:col-span-2 xs:col-span-1'>
+                        <label 
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="pagina_web">
+                            Página Web
+                        </label>
+                        <input 
+                            id="pagina_web" 
+                            name='pagina_web'
+                            type="text" 
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-50" 
+                            placeholder='Página Web del Hotel'
+                        />
                     </div>
                 </div>
-                <div>
-                    <div className='grid grid-cols-2 gap-4'>
-                        <button 
-                            type='submit'
-                            className='grid-span-1 w-full bg-indigo-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-indigo-500 hover:cursor-pointer'
-                            >
-                            Crear Hotel
-                        </button>
-                        <Link 
-                            to="/"
-                            className='grid-span-1 w-full bg-gray-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-gray-500 hover:cursor-pointer text-center'
+                <div className='grid md:grid-cols-2 gap-4'>
+                    <button 
+                        type='submit'
+                        className='grid-span-1 w-full bg-indigo-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-indigo-500 hover:cursor-pointer'
                         >
-                            Cancelar
-                        </Link>
-                    </div>
+                        Crear Hotel
+                    </button>
+                    <Link 
+                        to="/"
+                        className='grid-span-1 w-full bg-gray-600 text-white px-4 py-3 rounded-md font-bold text-sm shadow-sm hover:bg-gray-500 hover:cursor-pointer text-center'
+                    >
+                        Cancelar
+                    </Link>
                 </div>
             </Form>
         </>
