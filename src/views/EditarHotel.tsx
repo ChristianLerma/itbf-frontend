@@ -137,6 +137,8 @@ export default function EditarHotel() {
                                 onInvalid={(e) => {
                                     if (+e.currentTarget.value < +hotel.total_habitaciones) {
                                         e.currentTarget.setCustomValidity(`El número de habitaciones no puede ser menor a las creadass en el sistema (${hotel.total_habitaciones})`);
+                                        
+                                        toast.error(`El número de habitaciones no puede ser menor a las creadas en el sistema (${hotel.total_habitaciones})`)
                                     } else {
                                         e.currentTarget.setCustomValidity('');
                                     }
