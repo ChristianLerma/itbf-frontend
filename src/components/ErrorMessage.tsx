@@ -1,5 +1,8 @@
 import { PropsWithChildren } from "react";
 
+// Este componente se utiliza para mostrar mensajes de error en la aplicación   
+// Recibe un prop children que es el mensaje de error a mostrar
+// El mensaje de error se muestra en un div con clases de Tailwind CSS para darle estilo
 export default function ErrorMessage( {children} : PropsWithChildren ) {
     return (
         <div className="mt-10">

@@ -4,20 +4,33 @@ import { getHotelById, updateHotel } from '../services/HotelesService';
 import { Hotel } from '../types';
 import { toast } from 'react-toastify';
 
+// La función loader se ejecuta antes de renderizar el componente
+// y se utiliza para cargar datos necesarios para el componente
+// La función action se ejecuta cuando se envía el formulario
+// y se utiliza para manejar la lógica de envío del formulario
+// La función action se ejecuta cuando se envía el formulario
 export async function loader({params} : LoaderFunctionArgs) {
+    // Se obtiene el id del hotel de los params
     if (params.Id !== undefined) {
+        // Se obtiene el hotel por id
         const hotel = await getHotelById(+params.Id)
         if (hotel === null || hotel === undefined || !hotel) {
             return redirect('/')
         }
-        
+        // Se retorna el hotel
         return hotel;
     }
     
+    // Si no se encuentra el hotel, se redirige a la página principal
     return redirect('/')
 }
 
+// La función action se ejecuta cuando se envía el formulario
+// y se utiliza para manejar la lógica de envío del formulario
+// La función action se ejecuta cuando se envía el formulario
+// y se utiliza para manejar la lógica de envío del formulario
 export async function action({ request, params } : ActionFunctionArgs) {
+    // Se ontienen los datos del formulario
     const data = Object.fromEntries(await request.formData());
 
     let error = '';
@@ -42,22 +55,34 @@ export async function action({ request, params } : ActionFunctionArgs) {
 
         return error;
     }
+
+    // Se obtiene el id del hotel de los params
     if (params.Id !== undefined) {
+        // Se utiliza updateHotel para actualizar el hotel
         await updateHotel(+params.Id, data);
 
+        // Se muestra un mensaje de éxito
         toast.success('Hotel editado correctamente')
 
     }else{
+        // Si no se encuentra el hotel, se redirige a la página principal
         return redirect('/')
     }
 
+    // Se redirige a la página principal
     return redirect('/');
 }
 
+//El componente EditarHotel se encarga de renderizar el formulario para editar un hotel
+// y manejar la lógica de envío del formulario
 export default function EditarHotel() {
 
+    // Se utiliza useLoaderData para obtener los datos del hotel
+    // que se cargaron en la función loader
     const hotel = useLoaderData() as Hotel;
-    
+
+    // Se utiliza useActionData para obtener los datos de error
+    // que se retornaron en la función action
     const error = useActionData() as string;
 
     return (

@@ -1,3 +1,6 @@
+// La función formatDateforHumans toma una cadena de fecha y la convierte en un formato legible para humanos, indicando cuánto tiempo ha pasado desde esa fecha hasta ahora.
+// Utiliza la clase Date de JavaScript para calcular la diferencia entre la fecha actual y la fecha proporcionada, y devuelve una cadena que indica el tiempo transcurrido en segundos, minutos, horas, días, semanas o meses.
+// La función es útil para mostrar fechas de manera más comprensible.
 export function formatDateforHumans(dateString: string) {
     const date = new Date(dateString);
     const now = new Date();
@@ -22,51 +25,4 @@ export function formatDateforHumans(dateString: string) {
         const months = Math.floor(days / 30);
         return `hace ${months} ${months === 1 ? 'mes' : 'meses'}`;
     }
-}
-
-export function formatDate(dateString: string) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-ES', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-    });
-}
-
-export function formatDateTime(dateString: string) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-ES', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-    }) + ' ' + date.toLocaleTimeString('es-ES', {
-        hour: '2-digit',
-        minute: '2-digit',
-    });
-}
-
-export function formatDateTimeFull(dateString: string) {    
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-ES', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-    }) + ' ' + date.toLocaleTimeString('es-ES', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-    });
-}
-
-export function formatDateTimeFullWithSeconds(dateString: string) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-ES', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-    }) + ' ' + date.toLocaleTimeString('es-ES', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-    });
 }

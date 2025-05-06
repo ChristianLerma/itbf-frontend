@@ -5,26 +5,45 @@ import { deleteHotel } from "../services/HotelesService";
 import { toast } from 'react-toastify';
 import { Tooltip } from 'react-tooltip'
 
+// Este componente se utiliza para mostrar los detalles de un hotel en una tabla
+// Recibe un prop hotel que es un objeto de tipo Hotel
 type HotelDetailsProps = {
     hotel: Hotel;
 };
 
+// Este componente se utiliza para manejar la acción de eliminar un hotel
+// Recibe un prop params que es un objeto con un parámetro Id
+// El parámetro Id se utiliza para obtener el hotel a eliminar
+// Si el hotel no existe, se redirige a la página principal
+// Si el hotel existe, se elimina y se redirige a la página principal
+// Si no se proporciona un Id, se redirige a la página principal
 export async function action({ params } : ActionFunctionArgs) {
+    // Se obtiene el hotel a eliminar utilizando el Id proporcionado en los parámetros
+    // Si el hotel no existe, se redirige a la página principal
     if (params.Id !== undefined) {
+        // Se obtiene el hotel a eliminar utilizando el Id proporcionado en los parámetros
         await deleteHotel(+params.Id!);
-
+        
+        // Se muestra un mensaje de éxito utilizando la librería react-toastify
         toast.success('Hotel eliminado correctamente')
-
+        
+        // Si el hotel no existe, se redirige a la página principal
         return redirect('/');
     }
 
+    // Si no se proporciona un Id, se redirige a la página principal
     return redirect('/');
 }
 
+// Este componente se utiliza para mostrar los detalles de un hotel en una tabla
+// Recibe un prop hotel que es un objeto de tipo Hotel
 export default function HotelDetails({hotel}: HotelDetailsProps) {
 
+    // Se utiliza el hook useNavigate de react-router-dom para navegar a otras páginas
     const navigate = useNavigate();
 
+    // Se utiliza el hook useState de react para manejar el estado del hotel
+    // Se utiliza el hook useEffect de react para ejecutar una función cuando se monta el componente
     return (
         <tr key={hotel.id} className="border-b hover:bg-gray-50">
             <td className="p-2 text-sm text-gray-800">

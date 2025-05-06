@@ -3,20 +3,34 @@ import { getHoteles } from '../services/HotelesService';
 import HotelDetails from '../components/HotelDetails';
 import { Hotel } from '../types';
 
+// La función loader se ejecuta antes de que se renderice el componente
+// y se utiliza para cargar datos que se necesitan en el componente
+// En este caso, se utiliza para cargar la lista de hoteles desde el servidor
+// y pasarlos como props al componente
 export async function loader() {
+    // Se obtiene la lista de hoteles desde el servidor
     const hoteles = (await getHoteles()) ?? [];
 
+    // Se ordenan los hoteles por fecha de actualización (updated_at) de forma descendente
+    // para que los más recientes aparezcan primero
     hoteles.sort((a, b) => {
         const dateA = new Date(a.updated_at).getTime();
         const dateB = new Date(b.updated_at).getTime();
         return dateB - dateA;
     })  
 
+    // Se devuelve la lista de hoteles para que se puedan utilizar en el componente
     return hoteles
 }
 
+// El componente Hoteles se encarga de mostrar la lista de hoteles
+// y de renderizar la tabla con los datos de cada hotel
 export default function Hoteles() {
 
+    // Se obtienen los datos de la lista de hoteles desde el loader
+    // y se asignan a la variable hoteles
+    // Se utiliza el hook useLoaderData para obtener los datos cargados por el loader
+    // y se especifica que el tipo de datos es un array de objetos Hotel
     const hoteles = useLoaderData() as Hotel[];
 
     return (

@@ -5,31 +5,53 @@ import { deleteHabitacion, getHabitacionById } from "../services/HabitacionesSer
 import { toast } from 'react-toastify';
 import { Tooltip } from "react-tooltip";
 
+// Este componente se utiliza para mostrar los detalles de una habitación en una tabla
+// Recibe un prop habitacion que es un objeto de tipo Habitacion
 type HabitacionDetailsProps = {
     habitacion: Habitacion;
 };
 
+// Este componente se utiliza para manejar la acción de eliminar una habitación
+// Recibe un prop params que es un objeto con un parámetro Id
+// El parámetro Id se utiliza para obtener la habitación a eliminar
+// Si la habitación no existe, se redirige a la página principal
+// Si la habitación existe, se elimina y se redirige a la página de habitaciones del hotel correspondiente
+// Si no se proporciona un Id, se redirige a la página principal
 export async function action({ params } : ActionFunctionArgs) {
     if (params.Id !== undefined) {
+
+        // Se obtiene la habitación a eliminar utilizando el Id proporcionado en los parámetros
+        // Si la habitación no existe, se redirige a la página principal
         const habitacion = await getHabitacionById(+params.Id!);
         if (habitacion === null || habitacion === undefined || !habitacion) {
             return redirect('/')
         }
 
+        // Se elimina la habitación utilizando el Id proporcionado en los parámetros
         await deleteHabitacion(+params.Id!);
 
+        // Se muestra un mensaje de éxito utilizando la librería react-toastify
         toast.success('Habitación eliminada correctamente')
 
+        // Se redirige a la página de habitaciones del hotel correspondiente utilizando el Id del hotel de la habitación eliminada
+        // Se utiliza el Id del hotel de la habitación eliminada para redirigir a la página de habitaciones del hotel correspondiente
         return redirect('/habitaciones/' + habitacion.hotel_id);
     }
 
+    // Si no se proporciona un Id, se redirige a la página principal
+    // Se redirige a la página principal utilizando la función redirect de react-router-dom
     return redirect('/');
 }
 
+// Este componente se utiliza para mostrar los detalles de una habitación en una tabla
+// Recibe un prop habitacion que es un objeto de tipo Habitacion
 export default function HabitacionDetails({habitacion}: HabitacionDetailsProps) {
 
+    // Se utiliza el hook useNavigate de react-router-dom para navegar a otras páginas
     const navigate = useNavigate();
 
+    // Se utiliza el hook useState de react para manejar el estado de la habitación
+    // Se utiliza el hook useEffect de react para ejecutar una función cuando se monta el componente
     return (
         <tr key={habitacion.id} className="border-b hover:bg-gray-50">
             <td className="p-2 text-sm text-gray-800">

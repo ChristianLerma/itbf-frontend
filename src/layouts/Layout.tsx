@@ -3,6 +3,12 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import 'react-tooltip/dist/react-tooltip.css'
 
+// Este componente se utiliza para mostrar el layout de la aplicación
+// Contiene el header y el main de la aplicación
+// El header contiene el título de la aplicación    
+// El main contiene el contenido de la aplicación
+// El contenido de la aplicación se carga dinámicamente utilizando el componente Outlet de react-router-dom
+// El componente Outlet se utiliza para renderizar el contenido de la ruta actual
 export default function Layout() {
   return (
     <>

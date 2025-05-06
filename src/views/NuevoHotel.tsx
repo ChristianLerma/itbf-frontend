@@ -3,7 +3,16 @@ import ErrorMessage from '../components/ErrorMessage';
 import { addHotel, getHotelesByNombre } from '../services/HotelesService';
 import { toast } from 'react-toastify';
 
+// La función action se ejecuta cuando se envía el formulario
+// y se utiliza para procesar los datos enviados por el formulario
+// En este caso, se utiliza para crear un nuevo hotel en el servidor
+// y redirigir al usuario a la lista de hoteles
 export async function action({ request } : ActionFunctionArgs) {
+    // Se obtiene el objeto FormData del formulario enviado
+    // y se convierte en un objeto JavaScript utilizando Object.fromEntries
+    // para que se pueda trabajar con los datos de forma más sencilla
+    // Se utiliza el método formData() del objeto request para obtener los datos del formulario
+    // y se convierte en un objeto utilizando Object.fromEntries
     const data = Object.fromEntries(await request.formData());
 
     let error = '';
@@ -34,18 +43,26 @@ export async function action({ request } : ActionFunctionArgs) {
     if (hotel.length > 0) {
         toast.error('El hotel ' + data.hotel + ' ya existe')
         
+        // Si el hotel ya existe, se muestra un mensaje de error y se redirige al usuario a la lista de hoteles
         return 'El hotel ' + data.hotel + ' ya existe';
     }
 
+    // Se crea un nuevo hotel utilizando la función addHotel
     await addHotel(data);
 
+    // Se muestra un mensaje de éxito utilizando la librería toastify
     toast.success('Hotel creado correctamente')
 
+    // Se redirige al usuario a la lista de hoteles utilizando la función redirect
     return redirect('/');
 }
 
+// El componente NuevoHotel se encarga de mostrar el formulario para crear un nuevo hotel
+// y de procesar los datos enviados por el formulario
 export default function NuevoHotel() {
-
+    
+    // Se utiliza el hook useActionData para obtener los datos enviados por el formulario
+    // y se asignan a la variable error
     const error = useActionData() as string;
 
     return (
